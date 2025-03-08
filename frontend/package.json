@@ -1,5 +1,5 @@
 {
-    "name": "lazycare-template1",
+    "name": "lazyCare-app",
     "version": "1.0.0",
     "description": "A health assistant application",
     "main": "index.js",
