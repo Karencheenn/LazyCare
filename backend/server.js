@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const axios = require('axios');
 const cors = require('cors');
 
 const userController = require('./src/controllers/user.controller');
@@ -10,24 +9,20 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: 'http://localhost:3000',  // 允许前端访问
-    credentials: true, // 允许携带 cookie
+    origin: 'http://localhost:3000',  // Allow frontend access
+    credentials: true, // Allow cookies
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-console.log("OLLAMA_API_URL:", process.env.OLLAMA_API_URL);
-console.log("PORT:", process.env.PORT);
+console.log("TINYLLAMA_API_URL:", process.env.TINYLLAMA_API_URL || "http://localhost:8000/tinyllama-generate");
+console.log("PORT:", PORT);
 
 app.use(express.json());
 
-// Ollama API
-const OLLAMA_API_URL = process.env.OLLAMA_API_URL || "http://localhost:11434/api/generate";
-const MODEL_NAME = "llama2";
-
-// api integration
-app.use('/user', userController); // for user profile
-app.use('/chat', chatbotController); // for chat history
+// ✅ Route handlers (Delegating POST to chatbot.controller.js)
+app.use('/user', userController); // User profile management
+app.use('/chat', chatbotController); // Chat history & chatbot logic
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);

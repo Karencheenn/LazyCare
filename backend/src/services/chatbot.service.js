@@ -6,8 +6,7 @@ const db = require("./db.service");
 
 class ChatbotService {
     constructor() {
-        this.HF_API_URL = "https://api-inference.huggingface.co/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0"; // ✅ TinyLlama Model
-        this.HF_API_KEY = process.env.HUGGINGFACE_API_KEY;
+        this.FASTAPI_URL = "http://localhost:8000/tinyllama-generate"; // ✅ Local FastAPI server
     }
 
     /**
@@ -19,30 +18,17 @@ class ChatbotService {
     async createChatByEmail(userInput, email) {
         try {
             if (!email) {
-                throw new Error("Email cannot be empty.");
+                throw new Error("User email cannot be empty.");
             }
 
-            const headers = {
-                Authorization: `Bearer ${this.HF_API_KEY}`,
-                "Content-Type": "application/json"
-            };
+            const response = await axios.post(this.FASTAPI_URL, { user_input: userInput });
 
-            const requestBody = {
-                inputs: `User: ${userInput}\nAssistant:`, // ✅ TinyLlama Chat Format
-                parameters: {
-                    max_new_tokens: 256,
-                    temperature: 0.7,
-                    top_p: 0.95
-                }
-            };
-
-            const response = await axios.post(this.HF_API_URL, requestBody, { headers });
-
-            if (!response.data || !response.data[0]?.generated_text) {
+            if (!response.data || !response.data.response) {
                 throw new Error("Invalid AI response format.");
             }
 
-            const aiResponse = response.data[0].generated_text.trim();
+            const aiResponse = response.data.response.trim();
+
 
             const newChat = {
                 email,
