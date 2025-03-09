@@ -23,7 +23,7 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
       if (!response.ok) {
         throw new Error('Failed to fetch user data');
       }
-      
+
       const userData = await response.json();
       if (userData.success) {
         const data = userData.data;
@@ -32,9 +32,6 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
         setGender(data.gender || "");
         setWeight(data.weight ? String(data.weight) : "");
         setUnit(data.weight_unit || "kg");
-        
-        // Update username in navbar
-        setUsernameInNavbar(data.username || "");
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -53,7 +50,7 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
         fetchUserData(currentUser.email);
       }
     }
-    
+
     // Listen for refresh events from the DeleteDataModal
     const handleRefreshUserData = () => {
       const userEmail = localStorage.getItem('userEmail');
@@ -61,9 +58,9 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
         fetchUserData(userEmail);
       }
     };
-    
+
     window.addEventListener('refreshUserData', handleRefreshUserData);
-    
+
     // Cleanup
     return () => {
       window.removeEventListener('refreshUserData', handleRefreshUserData);

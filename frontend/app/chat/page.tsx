@@ -15,8 +15,6 @@ export default function ChatPage() {
   const [input, setInput] = useState("");
   const userEmail = "yansabrina66@gmail.com";
 
-  
-
   const handleSendMessage = async () => {
     if (!input.trim()) return;
 
