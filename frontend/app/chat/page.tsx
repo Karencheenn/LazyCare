@@ -19,7 +19,7 @@ export default function ChatPage() {
     setMessages(newMessages);
     setInput("");
 
-    // api connection here
+    // api integration future
     setTimeout(() => {
       setMessages((prev) => [...prev, { role: "ai", content: "This is a placeholder AI response." }]);
     }, 1000);
