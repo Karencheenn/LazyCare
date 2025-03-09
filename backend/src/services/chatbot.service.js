@@ -1,16 +1,20 @@
-const axios = require('axios');
-const db = require('./db.service');
+require("dotenv").config();
+const axios = require("axios");
+const db = require("./db.service");
+
+
 
 class ChatbotService {
     constructor() {
-        this.OLLAMA_API_URL = process.env.OLLAMA_API_URL || "http://localhost:11434/api/generate";
+        this.HF_API_URL = "https://api-inference.huggingface.co/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0"; // ✅ TinyLlama Model
+        this.HF_API_KEY = process.env.HUGGINGFACE_API_KEY;
     }
 
     /**
-     * Create a new chat record by Email
+     * Generate AI response using TinyLlama
      * @param {string} userInput - User's input message
      * @param {string} email - User's email (unique identifier)
-     * @returns {Promise<object>} - Returns the newly created chat record
+     * @returns {Promise<object>} - Returns the chatbot response
      */
     async createChatByEmail(userInput, email) {
         try {
@@ -18,20 +22,32 @@ class ChatbotService {
                 throw new Error("Email cannot be empty.");
             }
 
-            const response = await axios.post(this.OLLAMA_API_URL, {
-                model: "llama2",
-                prompt: `User asks: ${userInput}\nAI (Health advice):`,
-                stream: false
-            });
+            const headers = {
+                Authorization: `Bearer ${this.HF_API_KEY}`,
+                "Content-Type": "application/json"
+            };
 
-            if (!response.data || !response.data.response) {
+            const requestBody = {
+                inputs: `User: ${userInput}\nAssistant:`, // ✅ TinyLlama Chat Format
+                parameters: {
+                    max_new_tokens: 256,
+                    temperature: 0.7,
+                    top_p: 0.95
+                }
+            };
+
+            const response = await axios.post(this.HF_API_URL, requestBody, { headers });
+
+            if (!response.data || !response.data[0]?.generated_text) {
                 throw new Error("Invalid AI response format.");
             }
+
+            const aiResponse = response.data[0].generated_text.trim();
 
             const newChat = {
                 email,
                 message: userInput,
-                aiResponse: response.data.response,
+                aiResponse,
                 timestamp: new Date().toISOString()
             };
 
@@ -77,7 +93,8 @@ class ChatbotService {
      * @param {string} email - User's email
      * @param {string} messageId - Chat message timestamp
      * @returns {Promise<object>} - Success or failure message
-     */async deleteChatByEmailAndMessageId(email, messageId) {
+     */
+    async deleteChatByEmailAndMessageId(email, messageId) {
         try {
             const data = await db.readData();
 
@@ -148,7 +165,6 @@ class ChatbotService {
             throw new Error("Internal server error: " + error.message);
         }
     }
-
 }
 
 module.exports = new ChatbotService();
