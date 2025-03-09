@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../../library/firebase";
 import styles from "./profile.module.css";
 
-export default function ProfilePage() {
+export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavbar: (username: string) => void }) {
   const [user, setUser] = useState<any>(null);
   const [username, setUsername] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -21,10 +21,33 @@ export default function ProfilePage() {
     }
   }, []);
 
-  const handleSave = () => {
-    // connection with api
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 2000);
+  const handleSave = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/user/email/${user?.email}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          birthday,
+          gender,
+          weight,
+          unit,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update user');
+      }
+
+      setUsernameInNavbar(username);
+
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 2000);
+    } catch (error) {
+      console.error("Error saving user data:", error);
+    }
   };
 
   return (

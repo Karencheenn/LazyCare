@@ -14,14 +14,33 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (auth.currentUser) {
-      router.push("/profile");
+      router.push("/");
     }
   }, []);
 
   const handleLogin = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      
+      // get user info
+      const user = result.user;
+      const username = user.displayName; // username
+      const email = user.email; // user email
+
+      // api to create or update user
+      const response = await fetch('http://localhost:5000/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email }), // only send username and email
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create or update user');
+      }
+
       router.push("/profile");
     } catch (error) {
       console.error("Login failed:", error);
