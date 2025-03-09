@@ -3,10 +3,10 @@ from pydantic import BaseModel
 import torch
 from transformers import pipeline
 
-# ✅ Initialize FastAPI
+# Initialize FastAPI
 app = FastAPI()
 
-# ✅ Load TinyLlama model
+#  Load TinyLlama model
 pipe = pipeline(
     "text-generation",
     model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
@@ -14,11 +14,11 @@ pipe = pipeline(
     device_map="auto"
 )
 
-# ✅ Define request format
+# Define request format
 class ChatRequest(BaseModel):
     user_input: str
 
-# ✅ Update API Route (New Name: `/tinyllama-generate`)
+# Update API Route (New Name: `/tinyllama-generate`)
 @app.post("/tinyllama-generate")
 async def generate_chat(request: ChatRequest):
     messages = [
@@ -31,5 +31,5 @@ async def generate_chat(request: ChatRequest):
 
     return {"response": outputs[0]["generated_text"]}
 
-# ✅ Run FastAPI with:
+# Run FastAPI with:
 # uvicorn tinyllama_api:app --host 0.0.0.0 --port 8000
