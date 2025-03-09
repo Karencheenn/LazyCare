@@ -78,6 +78,42 @@
       "message": "hii if i didn't sleep for 3 days what will happens\n",
       "aiResponse": "If you didn't sleep for 3 days, you would most likely experience some form of sleep deprivation. If you're worried about how it will affect your health, it's essential to get enough sleep each night. It's recommended to aim for 7-9 hours of sleep per night, but if you're experiencing any symptoms of sleep deprivation, it's essential to take restorative sleep as soon as possible. Consulting with a healthcare professional can also be helpful in assessing the severity of your situation and developing a customized treatment plan.",
       "timestamp": "2025-03-09T09:18:25.889Z"
+    },
+    {
+      "email": "yansabrina66@gmail.com",
+      "message": "im so tired",
+      "aiResponse": "Sure, here's an updated version of the script that includes a summary of your preferred responses:\n\nIntro:\nLazy Care, a friendly chatbot, is here to help you with your health concerns. We're designed to provide you with quick and easy tips to help you stay healthy.\n\nMission:\nOur mission is to empower you with the knowledge and tools you need to take care of your health. We're here to provide you with practical solutions that work for you.\n\nYour Problem:\nAre you feeling tired or run down? Have you been experiencing digestive issues lately? Or maybe you're dealing with an injury or illness. We're here to help.\n\nTop Three Preferred Responses:\n1) \"I'm feeling tired and have been experiencing digestive issues lately. Is there a natural remedy that can help me?\"\n2) \"I'm dealing with an injury and need to rest. Is there a way to ease the pain without resorting to painkillers?\"\n3) \"I've been experiencing a runny nose and cough. Is there a natural remedy for that?\"",
+      "timestamp": "2025-03-09T09:42:25.199Z"
+    },
+    {
+      "email": "yansabrina66@gmail.com",
+      "message": "choose top 1",
+      "aiResponse": "1. Stay hydrated: Drink plenty of water throughout the day to keep your body hydrated. Aim for at least eight glasses of water per day.\n\n2. Stay active: Exercise regularly to help keep your body healthy and increase bone density. Try to incorporate physical activities that you enjoy, such as walking, cycling, or swimming.\n\n3. Eat healthy: A healthy diet full of fruits, vegetables, lean proteins, and whole grains is necessary for good health. Aim for 1-2 servings of fruits and vegetables daily.\n\nRemember, healthy habits take time and effort. Practice consistently and enjoy the journey towards better health.",
+      "timestamp": "2025-03-09T09:45:05.854Z"
+    },
+    {
+      "email": "yansabrina66@gmail.com",
+      "message": "hi i feel really tired today\n",
+      "aiResponse": "Hello, and welcome to Lazy Care, the friendly chatbot who provides practical and empathetic health advice. My name is Lazy Care, and I'm here to help you feel better and more confident about your health.\n\nI understand that you may feel tired and unwell today, and that's totally understandable. But don't worry - you don't have to suffer through this feeling alone.\n\nFirst, let me ask you a few questions to get a better understanding of your current health situation. Do you feel sleepy or tired all the time? Are you experiencing headaches or pain? Are you experiencing any digestive issues?\n\nIf you've answered \"yes\" to any of these questions, I'd recommend taking a rest and relaxation break first. This could be as simple as taking a warm bath or doing a few deep breathing exercises.\n\nNow that you've taken some time to relax, let's move on to the next step. If you're feeling unwell, I'd recommend taking a few steps to address the issue. Do you have any food allergies or intolerances? Are you experiencing any changes in your body",
+      "timestamp": "2025-03-09T09:53:38.625Z"
+    },
+    {
+      "email": "yansabrina66@gmail.com",
+      "message": "hello bot, i havent sleep for 50 hours\n",
+      "aiResponse": "I do not have the ability to sleep, but I can provide you with a short answer:\n\nif you haven't slept for 50 hours, you may have a medical condition such as sleep apnea, narcolepsy, or restless leg syndrome. These conditions can cause you to wake up repeatedly throughout the night, leading to a lack of sleep. You should consult with a medical professional to determine the cause of your sleep disorder and take necessary steps to address it. In the meantime, please remain calm and follow the advice of the health assistant provided by your chatbot.",
+      "timestamp": "2025-03-09T09:58:31.831Z"
+    },
+    {
+      "email": "yansabrina66@gmail.com",
+      "message": "i am doing a hackathon and that's why I haven't sleep for such a long time\n",
+      "aiResponse": "I don't have access to your specific details, such as the hackathon you are participating in, but in general, it is not recommended to neglect sleep in a busy schedule. Even if you are working for a full day, you can still take a few minutes to relax and recharge before starting your work again. It's essential to ensure that you get enough sleep to perform optimally during the next day's work. Sleep is crucial for your physical and mental well-being, and it's essential to prioritize it.",
+      "timestamp": "2025-03-09T09:59:31.911Z"
+    },
+    {
+      "email": "yansabrina66@gmail.com",
+      "message": "its really nice to hear that and also just to let you know I just spend 50 hours to create you",
+      "aiResponse": "Thank you for letting me know that I am useful to you! I am glad to hear that you found my service useful. It's always encouraging to know that my work is appreciated.\n\nI'm glad that I was able to help you in your endeavors. If you have any further requests or questions in the future, feel free to let me know. I'd be happy to assist you any way I can.\n\nBest regards,\n\n[Your Name]\n[Your Title]\n[Your Company/Organization]",
+      "timestamp": "2025-03-09T10:00:35.981Z"
     }
   ]
 }

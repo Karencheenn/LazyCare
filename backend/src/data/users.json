@@ -68,5 +68,14 @@
     "gender": null,
     "weight": null,
     "weight_unit": "kg"
+  },
+  {
+    "id": "1741512362304",
+    "username": "Yan Sabrina",
+    "email": "yansabrina66@gmail.com",
+    "birthday": null,
+    "weight": 0,
+    "weight_unit": null,
+    "gender": null
   }
 ]
