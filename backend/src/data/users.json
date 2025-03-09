@@ -25,5 +25,20 @@
     "birthday": null,
     "weight": null,
     "gender": null
+  },
+  {
+    "id": "1741491541766",
+    "username": "Karen Chen",
+    "email": "taeunkarenchen@gmail.com",
+    "birthday": "",
+    "gender": "",
+    "weight": "655",
+    "weight_unit": "lb",
+    "unit": "kg"
+  },
+  {
+    "id": "1741492653806",
+    "username": "Karen 11112",
+    "email": "karen@example.com"
   }
 ]
