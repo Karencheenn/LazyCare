@@ -1,0 +1,30 @@
+[
+    {
+      "id": "1741450863052",
+      "username": "XiGua",
+      "email": "sarbinayan@example.com",
+      "birthday": "2004-01-01",
+      "gender": "female"
+    },
+    {
+      "id": "1741450864575",
+      "username": "XiGua",
+      "email": "sarbinayan@example.com",
+      "birthday": "2004-01-01",
+      "gender": "female"
+    },
+    {
+      "id": "1741469537640",
+      "username": "XiGua",
+      "email": "sarbinayan1222@example.com"
+    },
+    {
+      "id": "1741480063826",
+      "username": "Aurore",
+      "email": "shenggaoyunverynb@gmail.com",
+      "birthday": "2005-06-19",
+      "gender": "female",
+      "weight": "60",
+      "unit": "kg"
+    }
+  ]
