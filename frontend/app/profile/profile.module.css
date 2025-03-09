@@ -1,0 +1,137 @@
+.container {
+    width: 80vw;
+    margin-left: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: #ebebd2;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .title {
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    width: fit-content;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .formContainer {
+    width: 100%;
+    max-width: 50vw;
+    padding: 40px;
+    background: #F5F5DC;
+    border: 2px solid #c2c2aa;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 450px;
+    position: relative;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .form label {
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+    margin-left: 1vw;
+  }
+
+  .input, .disabledInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+  }
+
+  .input:focus {
+    outline: none;
+    border-color: #F7CAC9;
+    box-shadow: 0 0 5px rgba(146, 107, 106, 0.8);
+  }
+
+  .weightInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .unitSelect, .form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .unitSelect:focus {
+    outline: none;
+    border-color: #F7CAC9;
+    box-shadow: 0 0 5px rgba(146, 107, 106, 0.8);
+  }
+
+  .successMessage {
+    background: #926b6a;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    min-height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 14px;
+  }
+
+  .showSuccess {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .saveButton {
+    background-color: #c2c2aa;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .saveButton:hover {
+    background-color: #7FB3D5;
+    transition: background 0.3s ease-in-out;
+  }
