@@ -1,6 +1,6 @@
 # AI Health Assistant
 
-## Project Overview
+## LazyCare
 This project is an **AI Health Assistant** with a **Next.js frontend** and a **Node.js + Express backend**. The backend also integrates **FastAPI** to run an AI chatbot.
 
 ## System Requirements
@@ -47,7 +47,7 @@ Run the following command in the `backend` directory:
 ```sh
 node server.js
 ```
-The backend will connect to **http://localhost:8000**.
+The backend will connect to **http://localhost:5000**.
 
 ### 3. Start the Frontend (Next.js)
 Run the following command in the `frontend` directory:
