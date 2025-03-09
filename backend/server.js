@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: 'http://localhost:3000',  // allow frontend to access
-    credentials: true, // allow cookies
+    origin: 'http://localhost:3000',  // 允许前端访问
+    credentials: true, // 允许携带 cookie
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));

@@ -3,8 +3,8 @@ const router = express.Router();
 const userService = require('../services/user.service');
 
 /**
- * Data validation middleware
- * Only requires `username` and `email`
+ * 数据验证中间件
+ * 只强制要求 `username` 和 `email`
  */
 const validateUserData = (req, res, next) => {
     const { username, email, birthday, gender } = req.body;
@@ -42,20 +42,20 @@ const validateUserData = (req, res, next) => {
 
 /**
  * @route POST /user
- * @desc Create a new user (only requires username and email)
+ * @desc 创建新用户（只要求 username 和 email）
  */
 router.post('/', async (req, res) => {
     const { username, email } = req.body;
 
     try {
-        // Check if the user already exists
+        // 检查用户是否已存在
         const existingUser = await userService.getUserByEmail(email);
         if (existingUser) {
-            // If the user exists, update user information
+            // 如果用户已存在，更新用户信息
             const updatedUser = await userService.updateUserByEmail(email, { username });
             return res.status(200).json({ success: true, data: updatedUser });
         } else {
-            // If the user does not exist, create a new user
+            // 如果用户不存在，创建新用户
             const newUser = await userService.createUser({ username, email });
             return res.status(201).json({ success: true, data: newUser });
         }
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 
 /**
  * @route GET /user/:userId
- * @desc Get specified user information
+ * @desc 获取指定用户信息
  */
 router.get('/:userId', async (req, res) => {
     try {
@@ -84,7 +84,7 @@ router.get('/:userId', async (req, res) => {
 
 /**
  * @route PUT /user/:userId
- * @desc Update user information (only updates provided fields)
+ * @desc 更新用户信息（只更新提供的字段）
  */
 router.put('/:userId', async (req, res) => {
     try {
@@ -101,7 +101,7 @@ router.put('/:userId', async (req, res) => {
 
 /**
  * @route DELETE /user/:userId
- * @desc Delete user (also deletes their chat records)
+ * @desc 删除用户（同时删除其聊天记录）
  */
 router.delete('/:userId', async (req, res) => {
     try {
@@ -109,47 +109,41 @@ router.delete('/:userId', async (req, res) => {
         if (!result) {
             return res.status(404).json({ success: false, message: 'User not found, unable to delete' });
         }
-
-        // only clearing fields
-        user.birthday = null;
-        user.weight = null;
-        user.gender = null;
-
-        await userService.updateUserById(req.params.userId, user);
-
-        res.status(200).json({ success: true, message: 'User profile updated, specific fields deleted' });
+        res.status(200).json({ success: true, message: 'User successfully deleted' });
     } catch (error) {
-        console.error("Failed to delete user fields:", error);
-        res.status(500).json({ success: false, message: "Failed to delete user fields: " + error.message });
+        console.error("Failed to delete user:", error);
+        res.status(500).json({ success: false, message: "Failed to delete user: " + error.message });
     }
 });
 
 /**
  * @route GET /user/email/:email
- * @desc Get user information by email
+ * @desc 通过 Email 获取用户信息
  */
 router.get('/email/:email', async (req, res) => {
     try {
         const user = await userService.getUserByEmail(req.params.email);
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User does not exist' });
+            return res.status(404).json({ success: false, message: '用户不存在' });
         }
         res.status(200).json({ success: true, data: user });
     } catch (error) {
-        console.error("Failed to retrieve user:", error);
-        res.status(500).json({ success: false, message: "Failed to retrieve user information: " + error.message });
+        console.error("获取用户失败:", error);
+        res.status(500).json({ success: false, message: "获取用户信息失败: " + error.message });
     }
 });
 
+
 /**
  * @route PUT /user/email/:email
- * @desc Update user information by email (only updates provided fields)
+ * @desc 通过 Email 更新用户信息（只更新提供的字段）
  */
+
 router.put('/email/:email', async (req, res) => {
     try {
         const updatedUser = await userService.updateUserByEmail(req.params.email, req.body);
         if (!updatedUser) {
-            return res.status(404).json({ success: false, message: 'User does not exist, unable to update' });
+            return res.status(404).json({ success: false, message: '用户不存在，无法更新' });
         }
         res.status(200).json({ success: true, data: updatedUser });
     } catch (error) {
@@ -160,23 +154,24 @@ router.put('/email/:email', async (req, res) => {
 
 /**
  * @route DELETE /user/email/:email
- * @desc Clear specific fields of the user by email
+ * @desc 通过 Email 清除用户的特定字段
  */
 router.delete('/email/:email', async (req, res) => {
     try {
         const user = await userService.getUserByEmail(req.params.email);
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User does not exist, unable to delete' });
+            return res.status(404).json({ success: false, message: '用户不存在，无法删除' });
         }
 
-        // only clearing fields
+        // 清除特定字段
         user.birthday = null;
         user.weight = null;
         user.gender = null;
 
+        // 更新用户信息
         await userService.updateUserByEmail(req.params.email, user);
 
-        res.status(200).json({ success: true, message: 'User profile updated, specific fields deleted' });
+        res.status(200).json({ success: true, message: '用户资料已更新，特定字段已删除' });
     } catch (error) {
         console.error("Failed to delete user fields:", error);
         res.status(500).json({ success: false, message: "Failed to delete user fields: " + error.message });
