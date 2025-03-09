@@ -1,64 +1,121 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-  .modal {
-    background: #F5F5DC;
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    width: 60%;
-  }
+.modal {
+  background: #F5F5DC;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 60%;
+  max-width: 500px;
+}
 
-  .title {
-    margin-bottom: 15px;
-  }
+.title {
+  margin-bottom: 15px;
+}
 
-  .text {
-    margin-bottom: 20px;
-  }
+.text {
+  margin-bottom: 20px;
+}
 
-  .buttonContainer {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
+.errorText {
+  color: #d32f2f;
+  background-color: rgba(211, 47, 47, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
 
-  .cancelButton {
-    background: #ccc;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+.successText {
+  color: #2e7d32;
+  background-color: rgba(46, 125, 50, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
 
-  .cancelButton:hover {
-    background: #a9a9a9;
-    transition: background 0.3s ease-in-out;
-  }
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
 
-  .deleteButton {
-    background: #c2c2aa;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+.cancelButton {
+  background: #ccc;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  min-width: 100px;
+}
 
-  .deleteButton:hover {
-    background: #9f9f7d;
-    transition: background 0.3s ease-in-out;
+.cancelButton:hover:not(:disabled) {
+  background: #a9a9a9;
+  transition: background 0.3s ease-in-out;
+}
+
+.deleteButton {
+  background: #c2c2aa;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  min-width: 100px;
+  position: relative;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #9f9f7d;
+  transition: background 0.3s ease-in-out;
+}
+
+.cancelButton:disabled,
+.deleteButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading spinner */
+.deleteButton.loading {
+  color: transparent;
+}
+
+.deleteButton.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-top: -8px;
+  margin-left: -8px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-color: #ffffff transparent #ffffff transparent;
+  animation: spinner 1.2s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -40,5 +40,33 @@
     "id": "1741492653806",
     "username": "Karen 11112",
     "email": "karen@example.com"
+  },
+  {
+    "id": "190002",
+    "username": "hihi",
+    "email": "aurore.zrb@example.com",
+    "birthday": "2004-01-01",
+    "gender": "female",
+    "weight": null,
+    "unit": "kg"
+  },
+  {
+    "id": "1741498186281",
+    "username": "Gaoyun Sheng",
+    "email": "shenggaoyunverynb@gmail.com",
+    "birthday": null,
+    "gender": null,
+    "weight": null,
+    "unit": "kg",
+    "weight_unit": "kg"
+  },
+  {
+    "id": "1741498438440",
+    "username": "Ruobing Zhang",
+    "email": "aurore.zrb@gmail.com",
+    "birthday": null,
+    "gender": null,
+    "weight": null,
+    "weight_unit": "kg"
   }
 ]

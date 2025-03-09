@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { auth } from "../../library/firebase";
 import styles from "./profile.module.css";
+import DeleteDataModal from "../components/deleteDataModal"; // Adjust path as needed
 
 export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavbar: (username: string) => void }) {
   const [user, setUser] = useState<any>(null);
@@ -12,13 +13,61 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
   const [weight, setWeight] = useState("");
   const [unit, setUnit] = useState("kg"); // default in kg
   const [showSuccess, setShowSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("Save Successful!");
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  // Fetch user data function
+  const fetchUserData = async (email: string) => {
+    try {
+      const response = await fetch(`http://localhost:5000/user/email/${email}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+      
+      const userData = await response.json();
+      if (userData.success) {
+        const data = userData.data;
+        setUsername(data.username || "");
+        setBirthday(data.birthday || "");
+        setGender(data.gender || "");
+        setWeight(data.weight ? String(data.weight) : "");
+        setUnit(data.weight_unit || "kg");
+        
+        // Update username in navbar
+        setUsernameInNavbar(data.username || "");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   useEffect(() => {
     const currentUser = auth.currentUser;
     if (currentUser) {
       setUser(currentUser);
       setUsername(currentUser.displayName || "");
+      
+      // Store email in localStorage for the DeleteDataModal to use
+      if (currentUser.email) {
+        localStorage.setItem('userEmail', currentUser.email);
+        fetchUserData(currentUser.email);
+      }
     }
+    
+    // Listen for refresh events from the DeleteDataModal
+    const handleRefreshUserData = () => {
+      const userEmail = localStorage.getItem('userEmail');
+      if (userEmail) {
+        fetchUserData(userEmail);
+      }
+    };
+    
+    window.addEventListener('refreshUserData', handleRefreshUserData);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('refreshUserData', handleRefreshUserData);
+    };
   }, []);
 
   const handleSave = async () => {
@@ -33,7 +82,7 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
           birthday,
           gender,
           weight,
-          unit,
+          weight_unit: unit, // Make sure to use weight_unit as in the backend
         }),
       });
 
@@ -43,11 +92,17 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
 
       setUsernameInNavbar(username);
 
+      setSuccessMessage("Save Successful!");
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 2000);
     } catch (error) {
       console.error("Error saving user data:", error);
     }
+  };
+
+  // This function would be triggered somewhere in your UI
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true);
   };
 
   return (
@@ -106,12 +161,18 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
 
         {/* Success Message */}
         <div className={`${styles.successMessage} ${showSuccess ? styles.showSuccess : ""}`}>
-          Save Successful!
+          {successMessage}
         </div>
 
         {/* Save Button */}
         <button className={styles.saveButton} onClick={handleSave}>Save</button>
       </div>
+
+      {/* Delete Data Modal */}
+      <DeleteDataModal 
+        isOpen={isDeleteModalOpen} 
+        onClose={() => setIsDeleteModalOpen(false)} 
+      />
     </div>
   );
 }
