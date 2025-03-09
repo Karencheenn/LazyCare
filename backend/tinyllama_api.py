@@ -41,7 +41,16 @@ async def generate_chat(request: ChatRequest):
     prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     outputs = pipe(prompt, max_new_tokens=256, do_sample=True, temperature=0.7)
 
-    return {"response": outputs[0]["generated_text"]}
+    # ✅ Extract only the assistant's response
+    generated_text = outputs[0]["generated_text"]
+
+    # ✅ Remove system & user messages, keep only assistant's response
+    if "<|assistant|>" in generated_text:
+        assistant_response = generated_text.split("<|assistant|>")[-1].strip()
+    else:
+        assistant_response = generated_text  # Fallback if split fails
+
+    return {"response": assistant_response}
 
 # Run FastAPI with:
 # uvicorn tinyllama_api:app --host 0.0.0.0 --port 8000 --reload

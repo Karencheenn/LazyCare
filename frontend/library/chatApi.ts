@@ -1,26 +1,33 @@
 import api from "./api";
 
 // post chat history
+import axios from "axios";
+
+// Define backend URL
+const BASE_URL = "http://localhost:5000";  // ✅ Must match backend
+
+// POST: Send user input to backend
 export const sendChatMessage = async (email: string, userInput: string) => {
     try {
-      const response = await api.post(`/chat/${email}`, { userInput });
-      return response.data;
+        const response = await axios.post(`${BASE_URL}/chat/${email}`, { userInput });
+        return response.data;
     } catch (error) {
-      console.error("Error sending chat message:", error);
-      throw error;
+        console.error("Error sending chat message:", error);
+        throw error;
     }
-  };
+};
 
-// get a user history
+// GET: Retrieve chat history
 export const getChatHistory = async (email: string) => {
     try {
-      const response = await api.get(`/chat/${email}`);
-      return response.data;
+        const response = await axios.get(`${BASE_URL}/chat/${email}`);
+        return response.data;
     } catch (error) {
-      console.error("Error fetching chat history:", error);
-      throw error;
+        console.error("Error fetching chat history:", error);
+        throw error;
     }
-  };
+};
+
 
 // delte certain chat history
 export const deleteChatMessage = async (email: string, messageId: string) => {
