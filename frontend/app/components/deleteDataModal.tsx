@@ -85,8 +85,8 @@ export default function DeleteDataModal({ isOpen, onClose }: { isOpen: boolean; 
   if (!isOpen) return null;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.modal}  onClick={(e) => e.stopPropagation()}>
         <h2 className={styles.title}>Confirm Deletion</h2>
         <p className={styles.text}>This action cannot be undone. Are you sure you want to delete your data?</p>
         
