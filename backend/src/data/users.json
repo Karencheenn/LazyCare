@@ -20,19 +20,19 @@
   },
   {
     "id": "1741490974230",
-    "username": "Karen 1111",
+    "username": "Karen 11112",
     "email": "karen@example.com",
     "birthday": null,
     "weight": null,
-    "gender": null
+    "gender": "male"
   },
   {
     "id": "1741491541766",
-    "username": "Karen Chen",
+    "username": "Karen Chen111",
     "email": "taeunkarenchen@gmail.com",
     "birthday": "",
     "gender": "",
-    "weight": "655",
+    "weight": "",
     "weight_unit": "lb",
     "unit": "kg"
   },
@@ -40,5 +40,10 @@
     "id": "1741492653806",
     "username": "Karen 11112",
     "email": "karen@example.com"
+  },
+  {
+    "id": "1741498295375",
+    "username": "Karen111333",
+    "email": "karen111333@example.com"
   }
 ]

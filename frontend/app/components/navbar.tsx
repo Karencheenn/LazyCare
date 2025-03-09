@@ -9,28 +9,13 @@ import { User, MessageSquare, BrainCircuit, Trash2, LogOut } from "lucide-react"
 export default function Navbar({ setDeleteModalOpen }: { setDeleteModalOpen: (open: boolean) => void }) {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
-  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       setUser(currentUser);
-      setUsername(currentUser?.displayName || "");
     });
 
     return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) setUsername(storedUsername);
-
-    const handleStorageChange = () => {
-      const updatedUsername = localStorage.getItem("username");
-      if (updatedUsername) setUsername(updatedUsername);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const handleLogout = async () => {
@@ -44,13 +29,12 @@ export default function Navbar({ setDeleteModalOpen }: { setDeleteModalOpen: (op
       {user && (
         <div className={styles.userInfo}>
           <img src={user.photoURL || "/images/default-avatar.png"} alt="User Avatar" className={styles.userAvatar} />
-          <div className={styles.userName}>{username}</div>
         </div>
       )}
       <div className={styles.divider}></div> {/* break line */}
 
       {/* navbar buttons */}
-            <ul className={styles.navList}>
+      <ul className={styles.navList}>
         <li>
           <button onClick={() => router.push("/profile")} className={styles.navButton}>
             <User className={styles.navIcon} /> Profile
@@ -77,7 +61,6 @@ export default function Navbar({ setDeleteModalOpen }: { setDeleteModalOpen: (op
           </button>
         </li>
       </ul>
-
     </nav>
   );
 };

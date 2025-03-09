@@ -41,8 +41,6 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
         throw new Error('Failed to update user');
       }
 
-      setUsernameInNavbar(username);
-
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 2000);
     } catch (error) {
