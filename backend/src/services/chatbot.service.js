@@ -2,8 +2,6 @@ require("dotenv").config();
 const axios = require("axios");
 const db = require("./db.service");
 
-
-
 class ChatbotService {
     constructor() {
         this.HF_API_URL = "https://api-inference.huggingface.co/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0"; // ✅ TinyLlama Model

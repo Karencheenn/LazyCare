@@ -30,10 +30,10 @@
     "id": "1741491541766",
     "username": "Karen Chen",
     "email": "taeunkarenchen@gmail.com",
-    "birthday": "",
-    "gender": "",
-    "weight": "655",
-    "weight_unit": "lb",
+    "birthday": null,
+    "gender": null,
+    "weight": null,
+    "weight_unit": "kg",
     "unit": "kg"
   },
   {

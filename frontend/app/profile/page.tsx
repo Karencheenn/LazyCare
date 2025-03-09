@@ -32,9 +32,6 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
         setGender(data.gender || "");
         setWeight(data.weight ? String(data.weight) : "");
         setUnit(data.weight_unit || "kg");
-        
-        // Update username in navbar
-        setUsernameInNavbar(data.username || "");
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -89,8 +86,6 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
       if (!response.ok) {
         throw new Error('Failed to update user');
       }
-
-      setUsernameInNavbar(username);
 
       setSuccessMessage("Save Successful!");
       setShowSuccess(true);
