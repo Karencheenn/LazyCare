@@ -1,5 +1,5 @@
 {
-    "name": "lazyCare-app",
+    "name": "lazycare-template1",
     "version": "1.0.0",
     "description": "A health assistant application",
     "main": "index.js",
@@ -23,6 +23,11 @@
         "cookies-next": "^5.1.0",
         "firebase": "^11.4.0",
         "lucide-react": "^0.479.0",
-        "next": "^15.2.1"
+        "next": "^15.2.1",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-icons": "^5.5.0",
+        "react-tsparticles": "^2.12.2",
+        "tsparticles-slim": "^2.12.0"
     }
 }
