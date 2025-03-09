@@ -59,7 +59,7 @@
     align-items: center;
     gap: 15px;
   }
-
+  
   .nav-list li {
     width: 100%;
     display: flex;
@@ -78,7 +78,7 @@
 
     display: flex !important;
     align-items: center !important;
-    gap: 12px !important;/
+    gap: 12px !important;
     justify-content: flex-start !important;
   }
 
