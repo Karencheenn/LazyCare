@@ -20,7 +20,7 @@ console.log("PORT:", PORT);
 
 app.use(express.json());
 
-// ✅ Route handlers (Delegating POST to chatbot.controller.js)
+// Route handlers (Delegating POST to chatbot.controller.js)
 app.use('/user', userController); // User profile management
 app.use('/chat', chatbotController); // Chat history & chatbot logic
 

@@ -43,7 +43,7 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
     if (currentUser) {
       setUser(currentUser);
       setUsername(currentUser.displayName || "");
-      
+
       // Store email in localStorage for the DeleteDataModal to use
       if (currentUser.email) {
         localStorage.setItem('userEmail', currentUser.email);
@@ -164,9 +164,9 @@ export default function ProfilePage({ setUsernameInNavbar }: { setUsernameInNavb
       </div>
 
       {/* Delete Data Modal */}
-      <DeleteDataModal 
-        isOpen={isDeleteModalOpen} 
-        onClose={() => setIsDeleteModalOpen(false)} 
+      <DeleteDataModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
       />
     </div>
   );

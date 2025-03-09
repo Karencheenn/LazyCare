@@ -106,7 +106,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-  
+
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out;

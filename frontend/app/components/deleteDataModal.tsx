@@ -19,7 +19,7 @@ export default function DeleteDataModal({ isOpen, onClose }: { isOpen: boolean; 
   const handleConfirmDelete = async () => {
     // Get the user's email from localStorage
     const userEmail = localStorage.getItem('userEmail');
-    
+
     if (!userEmail) {
       setError("User email not found. Please make sure you're logged in.");
       return;
@@ -31,14 +31,14 @@ export default function DeleteDataModal({ isOpen, onClose }: { isOpen: boolean; 
 
     try {
       console.log("Sending DELETE request to:", `http://localhost:5000/user/email/${userEmail}`);
-      
+
       const response = await fetch(`http://localhost:5000/user/email/${userEmail}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      
+
       const data = await response.json();
       console.log("Response data:", data);
 
@@ -47,14 +47,14 @@ export default function DeleteDataModal({ isOpen, onClose }: { isOpen: boolean; 
       }
 
       console.log("User data cleared successfully:", data);
-      
+
       // Show success message briefly before closing
       setSuccess(true);
-      
+
       // Close modal after a short delay but don't reload the page
       setTimeout(() => {
         onClose();
-        
+
         // Instead of reloading the whole page, manually update the form fields
         // while preserving the email
         const formFields = document.querySelectorAll('input, select');
@@ -70,7 +70,7 @@ export default function DeleteDataModal({ isOpen, onClose }: { isOpen: boolean; 
             }
           }
         });
-        
+
         // Refresh the profile data from server
         window.dispatchEvent(new CustomEvent('refreshUserData'));
       }, 1500);
@@ -89,19 +89,19 @@ export default function DeleteDataModal({ isOpen, onClose }: { isOpen: boolean; 
       <div className={styles.modal}  onClick={(e) => e.stopPropagation()}>
         <h2 className={styles.title}>Confirm Deletion</h2>
         <p className={styles.text}>This action cannot be undone. Are you sure you want to delete your data?</p>
-        
+
         {error && <p className={styles.errorText}>{error}</p>}
         {success && <p className={styles.successText}>Data successfully deleted!</p>}
-        
+
         <div className={styles.buttonContainer}>
-          <button 
-            className={styles.cancelButton} 
-            onClick={onClose} 
+          <button
+            className={styles.cancelButton}
+            onClick={onClose}
             disabled={isDeleting || success}
           >
             Cancel
           </button>
-          <button 
+          <button
             className={`${styles.deleteButton} ${isDeleting ? styles.loading : ''}`}
             onClick={handleConfirmDelete}
             disabled={isDeleting || success}

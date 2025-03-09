@@ -4,18 +4,17 @@
     height: 100vh;
     padding: 20px;
     background-color: #F5F5DC;
-  
-    /* Make chatContainer occupy only 80% of the viewport on the right side */
+
     width: 80vw;
     position: absolute;
     right: 0; /* Ensure it aligns from the right */
-  
+
     /* Center the content within this 80% */
     display: flex;
     align-items: center; /* Vertically center */
     justify-content: center; /* Horizontally center */
   }
-  
+
   /* Chat history area */
   .chatHistory {
     flex: 1;
@@ -35,7 +34,7 @@
     border-radius: 10px;
     max-width: 60%;
   }
-  
+
   /* AI message */
   .aiMessage {
     align-self: flex-start;
@@ -45,7 +44,7 @@
     border-radius: 10px;
     max-width: 60%;
   }
-  
+
   /* Input box area */
   .inputContainer {
     display: flex;
@@ -57,7 +56,7 @@
     border-radius: 15px;
     align-self: center;
   }
-  
+
   .inputBox {
     flex: 1;
     padding: 10px;
@@ -70,13 +69,13 @@
     overflow-y: auto;
     white-space: pre-wrap;
   }
-  
+
   .inputBox:focus {
     outline: none;
     border-color: #F7CAC9;
     box-shadow: 0 0 5px rgba(146, 107, 106, 0.8);
   }
-  
+
   /* Send button */
   .sendButton {
     background-color: #c2c2aa;
@@ -87,16 +86,15 @@
     border-radius: 50%;
     cursor: pointer;
   }
-  
+
   .sendButton:hover {
     background-color: #7FB3D5;
     transition: background 0.3s ease-in-out;
   }
-  
+
   /* Adjustments for larger screens */
   @media (min-width: 1024px) {
     .inputBox {
       font-size: 1.2rem;
     }
   }
-  

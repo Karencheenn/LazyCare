@@ -1,5 +1,5 @@
 {
-  "name": "health-chatbot-backend",
+  "name": "lazycare-app-backend",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {

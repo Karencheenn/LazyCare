@@ -22,7 +22,7 @@ export default function LoginPage() {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-      
+
       // get user info
       const user = result.user;
       const username = user.displayName; // username

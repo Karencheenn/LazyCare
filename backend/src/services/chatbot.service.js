@@ -29,7 +29,6 @@ class ChatbotService {
 
             const aiResponse = response.data.response.trim();
 
-
             const newChat = {
                 email,
                 message: userInput,
